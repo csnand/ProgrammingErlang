@@ -1,8 +1,7 @@
 -module(error_handling).
 -export([generate_exception/1,
          try_demo/0, catcher/1,
-         catch_demo/0,
-         stack_trace_demo/0
+         catch_demo/0
 ]).
 
 generate_exception(1) -> a;
@@ -26,4 +25,3 @@ catcher(N) ->
 catch_demo() ->
         [ {I, catch generate_exception(I)} || I <- lists:seq(1,5) ].
 
-stack_trace_demo() -> catch generate_exception(5).

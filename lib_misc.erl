@@ -61,6 +61,7 @@ filter(P, [H|T]) ->
     end;
 filter(_, []) -> [].
 
+%% filter using pattern matching
 filter2(P, [H|T]) -> filter3(P(H), H, P, T);
 filter2(_, [])    -> [].
 

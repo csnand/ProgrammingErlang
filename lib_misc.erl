@@ -1,5 +1,5 @@
 -module(lib_misc).
--export([temp_convert/0, mult/1, for/3, map1/2, map2/2, qsort/1]).
+-export([temp_convert/0, mult/1, for/3, map1/2, map2/2, qsort/1, pythag/1, perm/1]).
 
 %% higher order functions
 temp_convert() -> fun({c, C}) -> {f, 32 + C*9/5};
@@ -25,3 +25,17 @@ qsort([]) -> [];
 qsort([Pivot|T]) -> qsort([X || X <- T, X < Pivot])
                     ++ [Pivot] ++
                     qsort([X || X <- T, X >= Pivot]).
+
+%% pythagorean triplets using list comprehension
+pythag(N) ->
+    [ {A, B, C} ||
+        A <- lists:seq(1, N),
+        B <- lists:seq(1, N),
+        C <- lists:seq(1, N),
+        A*A + B*B =:= C*C,
+        A + B + C =< N
+    ].
+
+%% string permutation using list comprehension
+perm([]) -> [[]];
+perm(L)  -> [ [H|T] || H <- L, T <- perm(L--[H]) ].
